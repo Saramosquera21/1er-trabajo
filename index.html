@@ -1,0 +1,744 @@
+<!-- Eliminado: bloques estáticos de emergencia de países. Solo se usa el contenedor dinámico. -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salud Mental</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mood.css">
+  <link rel="stylesheet" href="selfcare.css">
+</head>
+<body>
+  <header id="main-header" class="hidden">
+    <nav class="container">
+      <div class="logo">SaludMental</div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link" data-section="inicio">Inicio</a></li>
+        <li><a href="#" class="nav-link" data-section="trastornos">Trastornos</a></li>
+        <li><a href="#" class="nav-link" data-section="videos">Videos</a></li>
+        <li><a href="#" class="nav-link" data-section="lineas-emergencia">Líneas de Emergencia</a></li>
+        <li><a href="#" class="nav-link" data-section="sobre-nosotros">Sobre Nosotros</a></li>
+        <li><a href="#" class="nav-link" data-section="cuestionario">Cuestionario</a></li>
+        <li id="logout-btn"><a href="#">Cerrar Sesión</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="formulario">
+      <div class="form-container">
+        <div class="form-header">
+          <h1>Bienvenido a Tu Espacio de Bienestar</h1>
+          <p>Regístrate para acceder a recursos y apoyo para tu salud mental</p>
+        </div>
+        <div class="image-slider">
+          <div class="slide active" style="background-image: url('https://via.placeholder.com/400x300?text=Slide+1')"></div>
+          <div class="slide" style="background-image: url('https://via.placeholder.com/400x300?text=Slide+2')"></div>
+          <div class="slide" style="background-image: url('https://via.placeholder.com/400x300?text=Slide+3')"></div>
+        </div>
+        <div class="form-box">
+          <h2>Crear Cuenta / Iniciar Sesión</h2>
+          <form id="formulario-registro">
+            <div class="form-group">
+              <label for="nombre">Nombre Completo:</label>
+              <input type="text" id="nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="correo">Correo Electrónico:</label>
+              <input type="email" id="correo" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña:</label>
+              <input type="password" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrarse / Iniciar Sesión</button>
+            <p id="mensaje-error"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="inicio" class="hidden">
+      <div class="welcome-message">
+        <h2 id="userWelcomeText">¡Bienvenido a tu espacio de bienestar!</h2>
+        <p>Este es tu espacio seguro, sin juicios ni prisas.
+        Aquí tus emociones son válidas, tu historia importa y no estás solo/a.
+        La salud mental es reconocer que somos humanos: sentimos, caemos y también podemos levantarnos.
+        Este rincón nace desde el amor, para recordarte que eres suficiente y que siempre hay esperanza.</p>
+      </div>
+      <div class="quick-actions">
+        <h3>¿Qué te gustaría hacer hoy?</h3>
+        <div class="action-grid">
+          <a href="mood.html" class="action-card">
+            <div class="action-content">
+              <span class="icon-large">😊</span>
+              <h3>Registrar mi estado</h3>
+              <p>Lleva un seguimiento de cómo te sientes</p>
+              <span class="btn btn-primary">Registrar estado</span>
+            </div>
+          </a>
+          <a href="selfcare.html" class="action-card">
+            <div class="action-content">
+              <span class="icon-large">🧡</span>
+              <h3>Técnicas de autocuidado</h3>
+              <p>Prácticas breves y efectivas para tu bienestar</p>
+              <span class="btn btn-primary">Ver técnicas</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Trastornos DSM-5 -->
+    <section id="trastornos" class="hidden">
+      <div class="trastornos-titulo">
+        <h1>Explora los Trastornos de la Salud Mental</h1>
+        <p class="subtitulo-trastornos">
+          Conoce, comprende y aprende sobre los principales trastornos psicológicos. La información es el primer paso para el bienestar.
+        </p>
+      </div>
+      <input type="text" id="trastorno-search" placeholder="Buscar trastorno..." class="search-input">
+      <div class="trastornos-grid">
+        <!-- Ejemplo de botón para cada trastorno -->
+        <button class="trastorno-btn" onclick="mostrarInfo('discapacidad-intelectual')">Discapacidad intelectual</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('tea')">Trastornos del espectro autista (TEA)</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('tdah')">TDAH</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('aprendizaje')">Trastornos específicos del aprendizaje</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('comunicacion')">Trastornos de la comunicación</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('motores')">Trastornos motores (tics, Tourette, etc.)</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('depresivo-mayor')">Trastorno depresivo mayor</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('distimia')">Trastorno depresivo persistente (distimia)</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('disforico-premenstrual')">Trastorno disfórico premenstrual</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('depresivo-sustancias')">Trastorno depresivo inducido por sustancias</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('tag')">Trastorno de ansiedad generalizada (TAG)</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('panico')">Trastorno de pánico</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('fobia-especifica')">Fobia específica</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('fobia-social')">Fobia social (ansiedad social)</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('agorafobia')">Agorafobia</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('ansiedad-separacion')">Ansiedad por separación</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('mutismo-selectivo')">Mutismo selectivo</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('bipolar-i')">Trastorno bipolar tipo I</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('bipolar-ii')">Trastorno bipolar tipo II</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('ciclomico')">Trastorno ciclotímico</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('toc')">Trastorno obsesivo-compulsivo (TOC)</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('dismorfico')">Trastorno dismórfico corporal</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('acumulacion')">Trastorno de acumulación</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('tricotilomania')">Tricotilomanía</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('dermatilomania')">Dermatilomanía</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('tept')">Trastorno de estrés postraumático (TEPT)</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('estres-agudo')">Trastorno de estrés agudo</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('adaptacion')">Trastorno de adaptación</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('reactivo-vinculacion')">Trastorno reactivo de la vinculación</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('relacion-desinhibida')">Trastorno de relación social desinhibida</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('insomnio')">Insomnio</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('hipersomnia')">Hipersomnia</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('narcolepsia')">Narcolepsia</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('apnea')">Apnea del sueño</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('ritmo-circadiano')">Trastornos del ritmo circadiano</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('parasomnias')">Parasomnias</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('anorexia')">Anorexia nerviosa</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('bulimia')">Bulimia nerviosa</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('atracon')">Trastorno por atracón</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('objetos-no-nutritivo')">Pica</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('rumiacion')">Trastorno de rumiación</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('evitacion-ingesta')">Evitación/restricción de la ingesta de alimentos</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('alcohol')">Trastornos por consumo de alcohol</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('otras-sustancias')">Trastornos por consumo de cannabis, cocaína, opioides, etc.</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('ludopatia')">Juego patológico (ludopatía)</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('antisocial')">Antisocial</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('borderline')">Límite (Borderline)</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('narcisista')">Narcisista</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('histrionico')">Histriónico</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('obs-comp-personalidad')">Obsesivo-compulsivo de la personalidad</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('evitativo')">Evitativo</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('dependiente')">Dependiente</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('esquizoide')">Esquizoide</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('esquizotipico')">Esquizotípico</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('paranoide')">Paranoide</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('esquizofrenia')">Esquizofrenia</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('esquizoafectivo')">Trastorno esquizoafectivo</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('esquizofreniforme')">Trastorno esquizofreniforme</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('delirante')">Trastorno delirante</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('psicotico-breve')">Trastorno psicótico breve</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('amnesia-disociativa')">Amnesia disociativa</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('identidad-disociativo')">Trastorno de identidad disociativo</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('despersonalizacion')">Despersonalización / desrealización</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('sintomas-somaticos')">Trastorno de síntomas somáticos</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('hipocondria')">Trastorno de ansiedad por enfermedad (hipocondría)</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('conversion')">Trastorno de conversión</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('negativista')">Trastorno negativista desafiante</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('explosivo')">Trastorno explosivo intermitente</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('conducta')">Trastorno de conducta</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('piromania')">Piromanía</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('cleptomania')">Cleptomanía</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('disforia-genero')">Disforia de género</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('voyeurismo')">Voyeurismo</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('exhibicionismo')">Exhibicionismo</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('frotteurismo')">Frotteurismo</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('sadismo-sexual')">Sadismo sexual</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('masoquismo-sexual')">Masoquismo sexual</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('pedofilia')">Pedofilia</button>
+        <button class="trastorno-btn" onclick="mostrarInfo('fetichismo')">Fetichismo</button>
+      </div>
+      <!-- Tarjeta flotante para mostrar información -->
+      <div class="info-detallada hidden" id="info-detallada">
+        <div class="info-content">
+          <img id="info-imagen" src="" alt="" class="info-img">
+          <div>
+            <h2 id="info-titulo"></h2>
+            <p id="info-descripcion"></p>
+            <h4 id="info-sintomas-titulo">Síntomas:</h4>
+            <ul id="info-lista-sintomas"></ul>
+            <h4 id="info-video-titulo" class="hidden">Video:</h4>
+            <div id="video-container"></div>
+          </div>
+        </div>
+        <button id="cerrar-info">Cerrar</button>
+      </div>
+    </section>
+
+    <section id="videos" class="hidden">
+      <h1>Videos Educativos</h1>
+      <div class="videos-gallery">
+        <div class="video-card">
+          <h3>Acumulación</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/acumulacion.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Adaptación</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/adaptacion.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Alcohol</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/alcohol.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Anorexia</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/anorexia.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Ansiedad por separación</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/ansiedad-separacion.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Antisocial</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/antisocial.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Apnea</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/apnea.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Aprendizaje</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/aprendizaje.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Atracón</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/atrancon.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Bipolar I</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/bipolar-i.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Bipolar II</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/bipolar-ii.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Borderline</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/borderline.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Bulimia</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/bulimia.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Ciclotimia</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/ciclotimia.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Cleptomanía</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/cleptomania.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Comunicación</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/comunicacion.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Conducta</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/conducta.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Conversión</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/conversion.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Delirante</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/delirante.mp4" type="video/mp4">
+          </video>
+        </div>
+      
+        <div class="video-card">
+          <h3>Depresivo mayor</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/depresivo-mayor.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Dermatilomanía</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/dermatilomania.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Despersonalización</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/despersonalizacion.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Discapacidad intelectual</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/discapacidad-intelectual.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Disforia de género</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/disforia.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Disfórico premenstrual</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/disforico-premenstrual.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Dismórfico corporal</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/dismorfico.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Distimia</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/distimia.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Esquizoafectivo</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/esquizoafectivo.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Esquizofreniforme</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/esquizofreinforme.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Esquizofrenia</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/esquizofrenia.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Esquizoide</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/esquizoide.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Esquizotípico</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/esquizotipico.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Estrés agudo</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/estres-agudo.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Evitación/restricción de la ingesta</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/evitacion-ingesta.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Evitativo</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/evitativo.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Exhibicionismo</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/exhibicionismo.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Explosivo</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/explosivo.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Fobia específica</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/fobia-especifica.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Fobia social</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/fobia-social.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Frotteurismo</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/frotteurismo.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Hipersomnia</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/hipersomnia.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Hipocondría</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/hipocondria.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Histriónico</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/histrionico.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Identidad disociativo</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/identidad-disociativo.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Insomnio</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/insomnio.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Ludopatía</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/ludopatia.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Masoquismo sexual</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/masoquismo-sexual.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Motores</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/motores.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Mutismo selectivo</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/mutismo-selectivo.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Narcisista</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/narcisista.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Narcolepsia</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/narcolepsia.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Negativista</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/negativista.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Otras sustancias</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/otras-sustancias.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Pánico</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/panico.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Paranoide</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/paranoide.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Parasomnias</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/parasomnias.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Piromanía</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/piromania.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Psicótico breve</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/psicotico-breve.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Reactivo de la vinculación</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/reactivo-vinculacion.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Relación desinhibida</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/relacion-desinhibida.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Ritmo circadiano</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/ritmo-circadiano.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Rumiación</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/rumiacion.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Sadismo sexual</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/sadismo-sexual.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>TAG</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/tag.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>TDAH</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/tdah.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>TEA</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/tea.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>TEPT</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/tept.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>TOC</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/toc.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Trastorno por abuso de sustancias</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/Trastorno por abuso de sustancias - causas, síntomas, diagnóstico, tratamiento, patología.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Tricotilomanía</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/tricotilomania.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <h3>Voyeurismo</h3>
+          <video width="100%" height="315" controls>
+            <source src="videos/voyeurismo.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <section id="lineas-emergencia" class="hidden">
+  <h1>Líneas de Emergencia</h1>
+  <select id="country-select">
+    <option value="">Selecciona tu país</option>
+    <option value="usa">USA</option>
+    <option value="mexico">México</option>
+    <option value="spain">España</option>
+    <option value="argentina">Argentina</option>
+    <option value="colombia">Colombia</option>
+  </select>
+  <!-- Contenedor para mostrar las líneas de emergencia del país seleccionado -->
+  <div id="emergency-container"></div>
+</section>
+    </section>
+
+    <section id="sobre-nosotros" class="hidden">
+      <h1>Sobre Nosotros</h1>
+
+      <h2>¿Quiénes somos?</h2>
+      <p> Somos un proyecto que nace desde la pasión por la salud y la tecnología. Como estudiante del SENA, he encontrado en estas dos áreas un punto de encuentro lleno de posibilidades para generar un impacto real en la vida de las personas. La salud mental es un tema que históricamente ha estado cargado de estigmas, silencios y falta de información accesible. Sin embargo, creemos que todos merecemos un espacio donde aprender, expresarnos y sentirnos acompañados.
+      Este sitio busca ser precisamente eso: un puente entre la información clara y la interacción dinámica. No es un portal rígido y frío, sino un espacio humano, cercano y sencillo, pensado para quienes desean comprender mejor los trastornos de salud mental y, al mismo tiempo, sentirse parte de una comunidad que respeta, escucha y motiva.</p>
+      <h2>¿Qué buscamos?</h2>
+      <p>Nuestro propósito central es informar, concientizar e invitar a la interacción. No queremos que el visitante simplemente lea datos o definiciones, sino que viva una experiencia distinta. Aquí cada clic abre una ventana de conocimiento presentada de manera práctica, con ejemplos, videos y recursos diseñados para facilitar la comprensión.
+      Buscamos crear un entorno donde el aprendizaje no sea una carga, sino un camino de descubrimiento. Queremos que quienes lleguen aquí se sientan parte de una comunidad digital que los acompaña, los escucha y los motiva a cuidar de su bienestar emocional.</p>
+      <h2>Misión</h2>
+      <p>Nuestra misión es ofrecer recursos confiables, accesibles y dinámicos sobre salud mental, utilizando la tecnología como una herramienta poderosa que acerque la información de manera sencilla, práctica y cercana a la vida cotidiana de las personas. Nos enfocamos en transformar lo complejo en algo entendible, para que cualquier persona, sin importar su edad o nivel de conocimiento, pueda acceder y beneficiarse de este contenido.</p>
+      <h2>Visión:</h2>
+      <p>Soñamos con un mundo donde la salud mental se viva como un derecho fundamental y no como un privilegio. Queremos romper con los estigmas que aún persisten y abrir la posibilidad de que cada individuo, en cualquier rincón, pueda acceder a información clara, herramientas útiles y experiencias digitales que contribuyan a su bienestar emocional.
+      A largo plazo, buscamos consolidarnos como una plataforma de referencia que inspire confianza, aprendizaje y motivación, creando un movimiento social donde la salud mental deje de ser un tema oculto y se convierta en parte de la vida cotidiana.</p>
+      <h2>Propósito</h2>
+      <p>Nuestro propósito es educar, concientizar y acompañar. No solo compartimos información: buscamos provocar reflexión, generar empatía y fomentar la interacción. Queremos que cada usuario entienda que la salud mental no es un tema lejano o ajeno, sino parte esencial de su vida, algo que se debe cuidar con la misma importancia que la salud física.
+      Aquí la información no se presenta de manera fría ni distante. Al contrario, procuramos que cada contenido tenga un sentido humano, práctico y motivador, con el fin de que la persona que lo lea pueda conectar con él y aplicarlo en su vida diaria.</p>
+      <h2>¿Por qué creamos esta página?</h2>
+      <p>La mayoría de páginas sobre salud mental suelen estar cargadas de textos demasiado técnicos, extensos y poco interactivos. Esto muchas veces genera que las personas pierdan el interés o sientan que el tema es inaccesible.
+      Nuestra propuesta es diferente: ofrecer un espacio más humano, visual y dinámico, en el que cada usuario pueda explorar, aprender y participar de manera activa. No queremos que el conocimiento sea aburrido ni lejano, sino que se convierta en algo vivo, cercano y útil.<p>
+      <h2>¿Por qué deberías leer esta página?</h2>
+      <p>Porque este espacio fue pensado para ti. Aquí encontrarás información clara, confiable y presentada de manera amigable, sin tecnicismos innecesarios. La salud mental es un tema que nos toca a todos, y por eso este proyecto quiere acompañarte en tu proceso de aprendizaje y autoconocimiento.
+      Aquí no solo aprenderás, también reflexionarás y te sentirás parte de una comunidad digital que busca transformar la forma en que hablamos de la salud mental: con cercanía, empatía y respeto.</p>
+      <h2>Equipo:</h2>
+      <p> Detrás de este proyecto hay un equipo joven de estudiantes y desarrolladores apasionados por la idea de integrar salud y tecnología. Creemos que al unir estas dos áreas se puede construir algo innovador, accesible y con verdadero impacto social.
+      Nuestra motivación nace de una convicción personal y colectiva: aportar un granito de arena para construir una sociedad más informada, consciente y empática. Cada texto, cada recurso y cada detalle de esta página fue pensado para las personas que la visitan, con el deseo de que se sientan escuchadas y acompañadas.</p>
+    </section>
+
+    <section id="cuestionario" class="hidden">
+<!-- Cuestionario de Satisfacción -->
+  <section id="satisfaccion" style="margin: 3rem auto 2rem auto; max-width: 700px; background: linear-gradient(120deg, #f3f4fe 60%, #e9e3ff 100%); border-radius: 24px; box-shadow: 0 4px 24px 0 #a084e82a; padding: 2.5rem 1.5rem;">
+    <h1 style="color: #a084e8; text-align: center; font-size: 2rem; margin-bottom: 2rem;">📝 Cuestionario de Satisfacción</h1>
+    <form id="form-satisfaccion">
+      <h2 style="color: #7b96ff; font-size: 1.2rem; margin-top: 1.5rem;">1. Experiencia general</h2>
+      <label>¿La página fue fácil de navegar?</label><br>
+      <label><input type="radio" name="facil-navegar" value="si" required> Sí</label>
+      <label><input type="radio" name="facil-navegar" value="no"> No</label><br><br>
+      <label>¿La información presentada fue clara y comprensible?</label><br>
+      <label><input type="radio" name="clara" value="si" required> Sí</label>
+      <label><input type="radio" name="clara" value="no"> No</label><br><br>
+      <label>¿Encontraste el contenido que estabas buscando?</label><br>
+      <label><input type="radio" name="contenido-buscado" value="si" required> Sí</label>
+      <label><input type="radio" name="contenido-buscado" value="no"> No</label><br>
+
+      <h2 style="color: #7b96ff; font-size: 1.2rem; margin-top: 2rem;">2. Interactividad y diseño</h2>
+      <label>¿Te resultó atractivo el diseño de la página?</label><br>
+      <label><input type="radio" name="diseno" value="si" required> Sí</label>
+      <label><input type="radio" name="diseno" value="no"> No</label><br><br>
+      <label>¿Te gustó que el contenido sea interactivo?</label><br>
+      <label><input type="radio" name="interactivo" value="si" required> Sí</label>
+      <label><input type="radio" name="interactivo" value="no"> No</label><br><br>
+      <label>¿Agregarías más videos o elementos interactivos?</label><br>
+      <label><input type="radio" name="mas-videos" value="si" required> Sí</label>
+      <label><input type="radio" name="mas-videos" value="no"> No</label><br>
+
+      <h2 style="color: #7b96ff; font-size: 1.2rem; margin-top: 2rem;">3. Utilidad del contenido</h2>
+      <label>¿El contenido sobre salud mental te pareció útil?</label><br>
+      <label><input type="radio" name="util" value="si" required> Sí</label>
+      <label><input type="radio" name="util" value="no"> No</label><br><br>
+      <label>¿Sientes que aprendiste algo nuevo al visitar la página?</label><br>
+      <label><input type="radio" name="aprendio" value="si" required> Sí</label>
+      <label><input type="radio" name="aprendio" value="no"> No</label><br><br>
+      <label>¿Volverías a usar esta página en el futuro?</label><br>
+      <label><input type="radio" name="volveria" value="si" required> Sí</label>
+      <label><input type="radio" name="volveria" value="no"> No</label><br>
+
+      <h2 style="color: #7b96ff; font-size: 1.2rem; margin-top: 2rem;">4. Opiniones abiertas</h2>
+      <label>¿Qué mejorarías de la página?</label><br>
+      <textarea name="mejorar" rows="2" style="width: 100%; border-radius: 10px; border: 1.5px solid #a084e8; margin-bottom: 1.2rem; padding: 0.7rem;"></textarea><br>
+      <label>¿Qué te gustó más?</label><br>
+      <textarea name="gusto" rows="2" style="width: 100%; border-radius: 10px; border: 1.5px solid #a084e8; margin-bottom: 1.2rem; padding: 0.7rem;"></textarea><br>
+
+      <button type="submit" style="background: linear-gradient(90deg, #7b96ff 60%, #a084e8 100%); color: #fff; border: none; border-radius: 12px; padding: 0.8rem 2.2rem; font-size: 1.1rem; font-weight: bold; margin-top: 1.5rem; box-shadow: 0 2px 8px #a084e81a; cursor: pointer;">Enviar</button>
+    </form>
+  </section>
+    </section>
+
+    <!-- Panel flotante para mostrar información -->
+    <div class="info-detallada hidden" id="info-detallada">
+      <div class="info-content">
+        <button id="cerrar-info">×</button>
+        <h2 id="info-titulo"></h2>
+        <p id="info-descripcion"></p>
+        <h3 id="info-sintomas-titulo" class="hidden">Síntomas</h3>
+        <ul id="info-lista-sintomas"></ul>
+        <h3 id="info-video-titulo" class="hidden">Video</h3>
+        <div id="video-container"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="components.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

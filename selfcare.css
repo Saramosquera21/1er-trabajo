@@ -1,0 +1,420 @@
+/* Estilos para la página de técnicas de autocuidado */
+:root {
+  --bg-grad: linear-gradient(180deg, #f3fcfb, #f6fbff);
+  --card-bg: #ffffff;
+  --accent: #4fb89b;
+  --muted: #5e776f;
+  --glass: rgba(255, 255, 255, 0.7);
+}
+
+body {
+  font-family: Nunito, system-ui, Segoe UI, Arial;
+  background: var(--bg-grad);
+  color: #15332f;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+a.back {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin: 6px 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+h1 .leaf {
+  font-size: 1.6rem;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  width: 100%;
+}
+
+/* Timer mejorado para coincidir con la imagen */
+.timer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 18px;
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(170, 100, 80, 0.13);
+}
+
+.timer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.timer-display-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.timer-display {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e8f7f2, #f2fbff);
+  box-shadow: 0 8px 20px rgba(40, 90, 80, 0.06);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.breath-guide {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 160px;
+}
+
+.breath-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.breath-instructions {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.breath-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.btn {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(79, 184, 155, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(79, 184, 155, 0.2);
+}
+
+.btn.secondary {
+  background: #eef9f6;
+  color: var(--accent);
+  box-shadow: none;
+  border: 1px solid rgba(79, 184, 155, 0.12);
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--muted);
+}
+
+/* Cards grid */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+@media (min-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 24px 28px;
+  border: 1px solid rgba(16, 50, 44, 0.04);
+  box-shadow: 0 8px 24px rgba(9, 40, 34, 0.05);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 18px 40px rgba(16, 50, 44, 0.06);
+}
+
+.card-head {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.card-emoji {
+  font-size: 28px;
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #e6faf3, #f3fbff);
+}
+
+.card-title {
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.card-desc {
+  color: var(--muted);
+  margin: 6px 0 10px;
+  font-size: 0.95rem;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.more {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.32s ease;
+  padding-top: 0;
+}
+
+.more.open {
+  max-height: 420px;
+  padding-top: 12px;
+}
+
+/* Breath circle for visual guide */
+.breath-circle {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #bfe6d9, #dff7fb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.45s ease, box-shadow 0.3s ease;
+  font-size: 1.8rem;
+}
+
+.breath-circle.breathing {
+  animation: breathe var(--breathe-cycle, 14s) ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 6px 18px rgba(47, 128, 116, 0.08);
+  }
+  40% {
+    transform: scale(1.35);
+    box-shadow: 0 18px 36px rgba(47, 128, 116, 0.12);
+  }
+  60% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 6px 18px rgba(47, 128, 116, 0.08);
+  }
+}
+
+/* Checklist */
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.checklist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  background: #fbfffd;
+  border: 1px solid rgba(16, 50, 44, 0.03);
+  transition: background-color 0.2s ease;
+}
+
+.checklist li:hover {
+  background-color: #f0f9f6;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* small helpers */
+.controls-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.small {
+  font-size: 0.9rem;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+
+.habit-counter {
+  margin-left: 6px;
+  font-weight: 700;
+  color: #2a7f6a;
+}
+
+.star {
+  color: #f5c542;
+  margin-left: 8px;
+}
+
+.selfcare-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .selfcare-main {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 16px 0;
+  }
+}
+
+.selfcare-block {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(170, 100, 80, 0.13);
+  padding: 28px 24px;
+  margin-bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.registro-confirmacion {
+  display: none;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f0fff4;
+  color: #2e7d32;
+  font-weight: 500;
+  margin-top: 12px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.registro-confirmacion.show {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.habits-chart-block {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.records {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+  max-height: 320px;
+  overflow: auto;
+}
+
+.recommendation {
+  font-size: 0.95rem;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  margin-top: 12px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  font-family: inherit;
+  resize: vertical;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Nuevos estilos para la sección de recordatorios */
+.reminders-section h2 {
+  margin-bottom: 8px;
+}
+
+.reminders-desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>🌿 Técnicas de autocuidado</title>
+  <link rel="stylesheet" href="selfcare.css" />
+</head>
+<body>
+  <main class="selfcare-main">
+    <div class="selfcare-block">
+      <a class="back" href="index.html">← Volver</a>
+      <h1><span class="leaf">🌿</span> Técnicas de autocuidado</h1>
+
+      <!-- Timer mejorado -->
+      <section class="timer-section" aria-label="Temporizador">
+        <div class="timer-header">
+          <strong>Temporizador</strong>
+          <div class="timer-controls">
+            <button id="startBtn2" class="btn">Iniciar</button>
+            <button id="stopBtn2" class="btn secondary">Detener</button>
+            <button id="resetBtn2" class="btn ghost">Reiniciar</button>
+          </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="timer-display-container">
+          <div class="timer-display" id="timerDisplay2" role="timer" aria-live="polite">00:00</div>
+          
+          <div class="breath-guide">
+            <div class="breath-title">Respiración guiada</div>
+            <div class="breath-instructions">Inhala 4s • Mantén 4s • Exhala 6s</div>
+            
+            <div class="breath-controls">
+              <label for="breathSpeed" class="muted" style="font-size:.9rem">Ciclo (s)</label>
+              <input id="breathSpeed" type="range" min="8" max="20" value="14" />
+            </div>
+            
+            <button id="breathBtn" class="btn small">Iniciar respiración</button>
+          </div>
+          
+          <div class="breath-circle" id="breathCircle" aria-hidden="true">🫁</div>
+        </div>
+      </section>
+
+      <!-- Recordatorios / Checklist -->
+      <section class="reminders-section">
+        <h2>Recordatorios saludables</h2>
+        <div class="reminders-desc">Marca lo que ya hiciste hoy</div>
+        <ul class="checklist" id="selfCareChecklist">
+          <li><label><input type="checkbox" data-key="water"> He tomado suficiente agua</label></li>
+          <li><label><input type="checkbox" data-key="move"> Hice pausa activa / me moví</label></li>
+          <li><label><input type="checkbox" data-key="journal"> Hice journaling breve</label></li>
+          <li><label><input type="checkbox" data-key="sleep"> Seguí mi rutina de sueño</label></li>
+        </ul>
+  <!-- Botón de guardar registro saludable solo al final de autocuidado ambiental -->
+      </section>
+
+      <!-- NUEVA SECCIÓN: Expresión creativa -->
+      <section>
+        <h2>🎨 Expresión creativa</h2>
+        <ul class="checklist" id="creativeChecklist">
+          <li><label><input type="checkbox" data-key="art"> Arte-terapia: dibujar, colorear, pintar libremente</label></li>
+          <li><label><input type="checkbox" data-key="music"> Música para el estado de ánimo (playlist relajante o energética)</label></li>
+          <li><label><input type="checkbox" data-key="letter"> Escribir cartas (a uno mismo, a un recuerdo, a un miedo)</label></li>
+          <li><label><input type="checkbox" data-key="photo"> Fotografía consciente: tomar una foto de algo que inspire calma</label></li>
+        </ul>
+      </section>
+
+      <!-- NUEVA SECCIÓN: Autocuidado social -->
+      <section>
+        <h2>🤝 Autocuidado social</h2>
+        <ul class="checklist" id="socialChecklist">
+          <li><label><input type="checkbox" data-key="talk"> Hablar con alguien de confianza</label></li>
+          <li><label><input type="checkbox" data-key="gratitude"> Mandar un mensaje de gratitud a alguien cercano</label></li>
+          <li><label><input type="checkbox" data-key="limitSocial"> Limitar redes sociales por un rato</label></li>
+          <li><label><input type="checkbox" data-key="petFamily"> Tiempo de calidad con mascota o familia</label></li>
+        </ul>
+      </section>
+
+      <!-- NUEVA SECCIÓN: Autocuidado ambiental -->
+      <section>
+        <h2>☀️ Autocuidado ambiental</h2>
+        <ul class="checklist" id="envChecklist">
+          <li><label><input type="checkbox" data-key="nature"> Conectar con la naturaleza</label></li>
+          <li><label><input type="checkbox" data-key="order"> Ordenar un espacio pequeño</label></li>
+          <li><label><input type="checkbox" data-key="aroma"> Encender una vela/aroma relajante</label></li>
+          <li><label><input type="checkbox" data-key="calm"> Bajar luces y ruido para generar calma</label></li>
+        </ul>
+        <button id="guardarSaludableBtn" class="btn btn-primary" style="margin-top:16px">Guardar registro saludable</button>
+        <div id="saludableConfirmacion" class="registro-confirmacion hidden">✅ Registro saludable guardado</div>
+      </section>
+    </div>
+    <div class="selfcare-block">
+      <!-- Tarjetas con técnicas y recomendaciones -->
+      <section class="cards" aria-label="Técnicas">
+        <article class="card" id="card-relax">
+          <div class="card-head">
+            <div class="card-emoji">🧘</div>
+            <div>
+              <div class="card-title">Relajación muscular</div>
+              <div class="card-desc">Tensa y relaja grupos musculares (20–30s)</div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="muted">Micro rutina</div>
+            <button class="btn ghost small toggle-more">Ver más</button>
+          </div>
+
+          <div class="more" aria-hidden="true">
+            <p>Empieza por los pies, tensa 20s y suelta, sube por piernas, tronco y cabeza. Respira profundo entre cada grupo.</p>
+          </div>
+        </article>
+
+        <article class="card" id="card-sleep">
+          <div class="card-head">
+            <div class="card-emoji">🌙</div>
+            <div>
+              <div class="card-title">Rutina de sueño</div>
+              <div class="card-desc">Horarios regulares y menos pantallas</div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="muted">Consejos rápidos</div>
+            <button class="btn ghost small toggle-more">Ver más</button>
+          </div>
+
+          <div class="more" aria-hidden="true">
+            <p>Evita pantallas 30 min antes de dormir, luz tenue, y una rutina relajante antes de acostarte.</p>
+          </div>
+        </article>
+
+        <article class="card" id="card-stretch">
+          <div class="card-head">
+            <div class="card-emoji">🤸</div>
+            <div>
+              <div class="card-title">Mini estiramientos</div>
+              <div class="card-desc">Pausas activas de 1–2 minutos</div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="muted">Haz una pausa</div>
+            <button class="btn ghost small toggle-more">Ver más</button>
+          </div>
+
+          <div class="more" aria-hidden="true">
+            <p>Estira cuello, hombros y realiza marcha en el sitio durante 60–90 segundos para reactivar la circulación.</p>
+          </div>
+        </article>
+
+        <article class="card" id="card-journal">
+          <div class="card-head">
+            <div class="card-emoji">✍️</div>
+            <div>
+              <div class="card-title">Journaling</div>
+              <div class="card-desc">Escribe 3 cosas buenas del día</div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="muted">Ideas rápidas</div>
+            <button class="btn ghost small toggle-more">Ver más</button>
+          </div>
+
+          <div class="more" aria-hidden="true">
+            <p>Ejemplo: 3 cosas buenas, 1 reto y 1 acción para mañana. Llevar un registro breve ayuda a crear hábito.</p>
+          </div>
+        </article>
+      </section>
+
+      <section>
+        <h2>Notas de autocuidado</h2>
+        <textarea id="selfcareNotes" placeholder="Escribe cómo te sentiste después de practicar una técnica..."></textarea>
+        <button class="btn btn-primary" style="margin-top:10px" id="saveNoteBtn">Guardar nota</button>
+        <ul id="selfcareList" class="records"></ul>
+        <div class="recommendation">Prueba una técnica diferente cada día para descubrir cuál te ayuda más.</div>
+        <!-- Gráfica circular de progreso de hábitos -->
+        <div class="habits-chart-block">
+          <h3 style="margin:18px 0 8px">Progreso semanal de autocuidado</h3>
+          <canvas id="habitsPieChart" width="220" height="220"></canvas>
+          <div id="habitsPieChartLabel" style="margin-top:8px;font-size:1.08rem;color:#7a5343;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="selfcare.js"></script>
+</body>
+</html>

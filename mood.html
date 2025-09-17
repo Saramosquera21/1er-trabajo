@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar mi estado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="mood.css">
+</head>
+<body class="bg-neutral">
+    <div class="container">
+        <header>
+            <a href="#" class="back-btn" id="backBtn">← Volver</a>
+            <h1>Registrar mi estado</h1>
+        </header>
+
+        <div class="main-content">
+            <div class="left-panel">
+                <div class="timer-section card">
+                    <div class="timer-display">
+                        <div class="timer-circle">00:00</div>
+                        <div class="timer-controls">
+                            <button id="startBtn" class="btn primary">Iniciar</button>
+                            <button id="pauseBtn" class="btn secondary">Pausar</button>
+                            <button id="resetBtn" class="btn secondary">Reset</button>
+                        </div>
+                    </div>
+                    
+                        <div class="breathing-section">
+                            <div class="breathing-header">
+                                <div class="breathing-icon" id="breathingLung">🫁</div>
+                                <div>
+                                    <h3>Respiración guiada</h3>
+                                    <p class="muted">Inhala 4s • Mantén 4s • Exhala 6s</p>
+                                </div>
+                            </div>
+                            <div class="breathing-controls">
+                                <button id="breathBtn" class="btn small">Iniciar respiración</button>
+                            </div>
+                        </div>
+                    
+                    <div class="reminder-section">
+                        <p class="muted">Establece un recordatorio:</p>
+                        <div class="reminder-controls">
+                            <input type="time" id="reminderTime">
+                            <button id="saveReminder" class="btn small">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="moodForm" class="card">
+                    <div class="form-group">
+                        <label class="muted">Estado de ánimo</label>
+                        <div class="mood-picker">
+                            <label class="mood-option">
+                                <input type="radio" name="mood" value="6">
+                                <span class="mood-emoji">😡</span>
+                            </label>
+                            <label class="mood-option">
+                                <input type="radio" name="mood" value="5">
+                                <span class="mood-emoji">😀</span>
+                            </label>
+                            <label class="mood-option">
+                                <input type="radio" name="mood" value="4">
+                                <span class="mood-emoji">🙂</span>
+                            </label>
+                            <label class="mood-option">
+                                <input type="radio" name="mood" value="3" checked>
+                                <span class="mood-emoji">😐</span>
+                            </label>
+                            <label class="mood-option">
+                                <input type="radio" name="mood" value="2">
+                                <span class="mood-emoji">😔</span>
+                            </label>
+                            <label class="mood-option">
+                                <input type="radio" name="mood" value="1">
+                                <span class="mood-emoji">😢</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="muted">Intensidad (1-10)</label>
+                        <div class="intensity-control">
+                            <input type="range" id="intensity" min="1" max="10" value="5">
+                            <span id="intensityValue" class="intensity-value">5/10</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="muted">Factores desencadenantes (opcional)</label>
+                        <input type="text" id="triggers" placeholder="Ej. discusión, cansancio, noticia...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="muted">Acciones que ayudaron</label>
+                        <div class="actions-grid">
+                            <button type="button" class="action-btn" data-action="music">
+                                <span class="action-emoji">🎧</span> Música
+                            </button>
+                            <button type="button" class="action-btn" data-action="walk">
+                                <span class="action-emoji">🚶</span> Caminar
+                            </button>
+                            <button type="button" class="action-btn" data-action="read">
+                                <span class="action-emoji">📖</span> Leer
+                            </button>
+                            <button type="button" class="action-btn" data-action="meditate">
+                                <span class="action-emoji">🧘</span> Meditar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="muted">¿Qué hiciste?</label>
+                        <textarea id="activityNotes" placeholder="Describe la actividad..."></textarea>
+                    </div>
+
+                    <div class="form-footer">
+                        <div class="duration-info">
+                            <span class="muted">Duración del temporizador:</span>
+                            <strong id="currentDuration">00:00</strong>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" id="saveBtn" class="btn primary">Guardar registro</button>
+                            <button type="button" id="exportBtn" class="btn secondary">Exportar CSV</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="records-section card">
+                    <div class="records-header">
+                        <h2>Registros</h2>
+                        <div class="streak-counter">
+                            <span class="muted">Racha:</span>
+                            <strong id="streak">0</strong> días
+                        </div>
+                    </div>
+                    <ul id="activitiesList" class="records-list"></ul>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="chart-card card">
+                    <h3>Evolución semanal</h3>
+                    <canvas id="lineChart" class="chart"></canvas>
+                    <div class="chart-info">
+                        <p id="monthSummary" class="muted">Promedio últimos 30 días: 3.8</p>
+                        <p id="comparison" class="muted">Con ejercicio: 1.5 — Sin ejercicio: 6</p>
+                    </div>
+                </div>
+
+                <div class="chart-card card">
+                    <h3>Distribución por categoría</h3>
+                    <canvas id="pieChart" class="chart"></canvas>
+                    <div id="recommendations" class="recommendation">
+                        Recomendaciones: todo en rango — sigue así
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="estado-animico-tooltip" class="hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
